@@ -91,9 +91,10 @@ module HockeyApp
       url_strategy.install_url
     end
 
-    def create_version file, release_notes = ""
+    def create_version file, dsym=nil, release_notes = ""
       version = Version.new(self, @client)
       version.ipa = file
+      version.dsym = dsym
       version.notes = release_notes
       client.post_new_version version
       @versions = nil
